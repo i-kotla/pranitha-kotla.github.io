@@ -8,25 +8,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0E1116;
-    --ink-soft:#171B22;
-    --deepblue:#3A5578;
-    --deepblue2:#4E7099;
-    --canvas:#F8F4EC;
-    --canvas-soft:#F1EADB;
-    --ultramarine:#6688B0;
-    --ultramarine-deep:#4E7099;
-    --crimson:#B2604F;
-    --sienna:#B98B4E;
-    --ivory:#FBF3E4;
-    --ochre:#D3A45C;
-    --alizarin:#BD6B52;
-    --titanium:#F4EFE4;
-    --marsblack:#171512;
-    --text-on-ink:#FBF6EA;
-    --text-dim-on-ink:#D9E1EC;
-    --text-on-canvas:#2A2620;
-    --text-dim-on-canvas:#736C5E;
+    --ink:#0A1E3D;
+    --ink-soft:#122a52;
+    --deepblue:#123A7A;
+    --deepblue2:#1E5FC2;
+    --canvas:#FFFFFF;
+    --canvas-soft:#EEF4FE;
+    --ultramarine:#2F6FE0;
+    --ultramarine-deep:#1B4FA6;
+    --crimson:#3E7BEF;
+    --sienna:#5B8FE8;
+    --ivory:#FFFFFF;
+    --ochre:#78A6F0;
+    --alizarin:#4C7FE0;
+    --titanium:#F4F8FF;
+    --marsblack:#0A1E3D;
+    --text-on-ink:#FFFFFF;
+    --text-dim-on-ink:#D6E4FB;
+    --text-on-canvas:#0F2547;
+    --text-dim-on-canvas:#5A6E92;
+    --violet:#6B5CE0;
+    --teal:#2BB8C4;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -69,10 +71,15 @@
     content:"";
     position:absolute; inset:0;
     background:
-      radial-gradient(circle at 12% 20%, rgba(201,154,61,0.25), transparent 42%),
-      radial-gradient(circle at 88% 30%, rgba(166,49,74,0.2), transparent 40%),
-      radial-gradient(circle at 50% 95%, rgba(244,239,228,0.12), transparent 45%);
+      radial-gradient(circle at 12% 20%, rgba(255,255,255,0.22), transparent 42%),
+      radial-gradient(circle at 88% 30%, rgba(120,166,240,0.35), transparent 40%),
+      radial-gradient(circle at 50% 95%, rgba(255,255,255,0.14), transparent 45%);
     pointer-events:none;
+    animation:heroGlow 10s ease-in-out infinite alternate;
+  }
+  @keyframes heroGlow{
+    0%{ transform:translate(0,0) scale(1); }
+    100%{ transform:translate(-2%,2%) scale(1.08); }
   }
   .hero-inner{ max-width:820px; margin:0 auto; text-align:center; position:relative; z-index:1; }
   .hero .eyebrow{
@@ -127,16 +134,17 @@
 
   /* VALUE PROP band */
   .valueprop{
-    background:linear-gradient(115deg, var(--ultramarine) 0%, var(--ultramarine-deep) 55%, #3a2f5c 100%);
+    background:linear-gradient(115deg, var(--ultramarine) 0%, var(--ultramarine-deep) 55%, var(--ink) 100%);
     color:var(--text-on-ink);
     position:relative;
   }
   .valueprop::before{
     content:"";
     position:absolute; inset:0;
-    background:radial-gradient(circle at 85% 20%, rgba(201,154,61,0.18), transparent 55%),
-               radial-gradient(circle at 10% 85%, rgba(166,49,74,0.18), transparent 50%);
+    background:radial-gradient(circle at 85% 20%, rgba(255,255,255,0.18), transparent 55%),
+               radial-gradient(circle at 10% 85%, rgba(255,255,255,0.12), transparent 50%);
     pointer-events:none;
+    animation:heroGlow 12s ease-in-out infinite alternate-reverse;
   }
   .valueprop .section-inner{ position:relative; z-index:1; }
   .valueprop .section-label{ color:var(--ivory); opacity:0.85; }
@@ -199,6 +207,9 @@
     text-transform:uppercase; color:var(--ultramarine-deep); margin-bottom:8px; font-weight:500;
   }
   .field p{ font-size:15.5px; color:var(--text-on-canvas); }
+  .field .f-sublabel{
+    font-size:15.5px; font-weight:600; color:var(--text-on-canvas); margin-bottom:6px;
+  }
 
   .demo-btn{
     display:inline-flex; align-items:center; gap:9px;
@@ -218,7 +229,131 @@
     background:var(--ultramarine-deep);
     box-shadow:0 6px 16px rgba(58,85,120,0.32);
   }
-  .demo-btn svg{ width:14px; height:14px; }
+  .compare-wrap{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px;
+    margin:10px 0 28px;
+  }
+  @media (max-width:720px){ .compare-wrap{ grid-template-columns:1fr; } }
+  .compare-wrap.single{ grid-template-columns:1fr; max-width:420px; }
+
+  .compare-card{
+    border-radius:14px; padding:22px 20px 20px;
+    border:1px solid rgba(0,0,0,0.06);
+  }
+  .compare-card.ml{ background:linear-gradient(160deg, var(--deepblue) 0%, var(--ultramarine-deep) 100%); }
+  .compare-card.dl{ background:linear-gradient(160deg, #0E2B5C 0%, #2F6FE0 100%); }
+
+  .compare-eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ivory); opacity:0.75; margin-bottom:6px;
+  }
+  .compare-title{ color:var(--ivory); font-size:19px; font-weight:600; margin-bottom:14px; }
+
+  /* --- ML: data scan visual --- */
+  .datatable{
+    background:rgba(255,255,255,0.08); border-radius:10px; padding:10px;
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; color:var(--ivory);
+    position:relative; overflow:hidden; margin-bottom:16px;
+  }
+  .datarow{
+    display:grid; grid-template-columns:1.1fr 1fr 0.8fr 0.9fr;
+    gap:6px; padding:6px 8px; border-radius:5px; opacity:0.55;
+  }
+  .datarow.head{ opacity:0.9; font-weight:700; letter-spacing:0.03em; }
+  .datarow.flag{
+    animation:flagPulse 2.6s ease-in-out infinite;
+    font-weight:700;
+  }
+  @keyframes flagPulse{
+    0%,100%{ background:rgba(255,255,255,0.06); opacity:0.7; }
+    50%{ background:rgba(255,255,255,0.5); opacity:1; }
+  }
+  .scanbar{
+    position:absolute; left:0; right:0; height:22px;
+    background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    animation:scanDown 3.2s linear infinite;
+  }
+  @keyframes scanDown{
+    0%{ top:8%; } 100%{ top:88%; }
+  }
+
+  /* --- DL: pixel reveal visual --- */
+  .pixelgrid{
+    display:grid; grid-template-columns:repeat(9, 1fr); gap:3px;
+    width:150px; height:150px; margin:0 auto 16px;
+  }
+  .px{
+    background:rgba(255,255,255,0.08); border-radius:2px;
+  }
+  .px.on{
+    background:var(--ivory);
+    opacity:0;
+    animation:pxReveal 3.2s ease-in-out infinite;
+  }
+  @keyframes pxReveal{
+    0%{ opacity:0; }
+    8%{ opacity:1; }
+    70%{ opacity:1; }
+    85%{ opacity:0; }
+    100%{ opacity:0; }
+  }
+
+  /* SKILLS */
+  #skills{ background:var(--canvas); padding:70px 24px 76px; }
+  #skills .section-label{ color:var(--sienna); text-align:center; }
+  #skills .section-title{ text-align:center; margin-bottom:40px; }
+  .skills-wrap{ max-width:760px; margin:0 auto; }
+  .skill-group{ margin-bottom:30px; }
+  .skill-group:last-child{ margin-bottom:0; }
+  .skill-group-label{
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--text-dim-on-canvas); margin-bottom:12px;
+  }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:10px; }
+  .skill-tag{
+    display:inline-flex; align-items:center;
+    padding:8px 15px; border-radius:8px;
+    background:var(--canvas-soft); border:1px solid rgba(0,0,0,0.06);
+    font-size:14px; color:var(--text-on-canvas);
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .skill-tag:hover{ transform:translateY(-2px); background:var(--ivory); }
+
+  /* TESTIMONIALS */
+  #testimonials{ background:var(--canvas-soft); padding:80px 6vw; }
+  #testimonials .section-label{ color:var(--sienna); text-align:center; }
+  #testimonials .section-title{ text-align:center; margin-bottom:44px; }
+  .testimonial-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:22px; max-width:980px; margin:0 auto;
+  }
+  .testimonial-card{
+    background:var(--canvas); border:1px solid rgba(20,20,20,0.07);
+    border-radius:10px; padding:28px 26px;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .testimonial-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 24px rgba(18,58,122,0.1);
+  }
+  .testimonial-quote-mark{
+    font-family:'Fraunces',serif; font-size:42px; font-weight:700;
+    color:var(--ultramarine); line-height:1; margin-bottom:6px; display:block;
+  }
+  .testimonial-card p{
+    font-size:15px; color:var(--text-on-canvas); margin-bottom:18px; line-height:1.6;
+  }
+  .testimonial-author{ display:flex; align-items:center; gap:12px; }
+  .testimonial-avatar{
+    width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(135deg, var(--deepblue), var(--ultramarine-deep));
+    color:var(--text-on-ink); display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; flex-shrink:0;
+  }
+  .testimonial-name{ font-size:14px; font-weight:600; color:var(--text-on-canvas); }
+  .testimonial-role{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-dim-on-canvas);
+  }
 
   /* FOOTER */
   footer{
@@ -237,6 +372,39 @@
     .hero{ padding:76px 6vw 60px; }
     .placard, .artifact-body{ padding:26px 22px; }
   }
+
+  /* SCROLL REVEAL */
+  .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.visible .stagger-item{ opacity:1; transform:translateY(0); }
+  .stagger-item{
+    opacity:0; transform:translateY(16px);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .art-gallery img{ animation:floatImg 5s ease-in-out infinite; }
+  .art-gallery img:nth-child(2n){ animation-delay:0.6s; }
+  .art-gallery img:nth-child(3n){ animation-delay:1.2s; }
+  @keyframes floatImg{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+  }
+
+  nav .links a{ position:relative; padding-bottom:2px; transition:color 0.2s ease; }
+  nav .links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background:var(--ivory); transition:width 0.25s ease;
+  }
+  nav .links a:hover::after{ width:100%; }
+
+  .skill-tag{ animation:tagPop 0.5s ease backwards; }
+  @keyframes tagPop{
+    from{ opacity:0; transform:translateY(6px) scale(0.94); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+  }
 </style>
 </head>
 <body>
@@ -245,6 +413,7 @@
   <div class="brand">Pranitha Kotla</div>
   <div class="links">
     <a href="#about">About</a>
+    <a href="#testimonials">Testimonials</a>
     <a href="#work">Work</a>
     <a href="#contact">Contact</a>
   </div>
@@ -256,15 +425,15 @@
     <h1>Pranitha Kotla</h1>
     <div class="role-line">.NET Full-Stack Developer <span>·</span> AI/ML Learner <span>·</span> Painter</div>
     <div class="art-gallery">
-      <img src="art1.png" alt="Painting by Pranitha Kotla">
-      <img src="art2.png" alt="Painting by Pranitha Kotla">
-      <img src="art3.png" alt="Painting by Pranitha Kotla">
-      <img src="art4.png" alt="Painting by Pranitha Kotla">
-      <img src="art5.png" alt="Painting by Pranitha Kotla">
-      <img src="art6.png" alt="Painting by Pranitha Kotla">
-      <img src="art7.png" alt="Painting by Pranitha Kotla">
+      <img src="assets/gallery/art1.png" alt="Painting by Pranitha Kotla">
+      <img src="assets/gallery/art2.png" alt="Painting by Pranitha Kotla">
+      <img src="assets/gallery/art3.png" alt="Painting by Pranitha Kotla">
+      <img src="assets/gallery/art4.png" alt="Painting by Pranitha Kotla">
+      <img src="assets/gallery/art5.png" alt="Painting by Pranitha Kotla">
+      <img src="assets/gallery/art6.png" alt="Painting by Pranitha Kotla">
+      <img src="assets/gallery/art7.png" alt="Painting by Pranitha Kotla">
     </div>
-    <p class="teaser">Building at the intersection of code and canvas — six years of full-stack development, a growing focus on AI/ML, and a lifelong practice of painting.</p>
+    <p class="teaser">Building at the intersection of code and canvas. Six years of full-stack development, a growing focus on AI/ML, and a lifelong practice of painting.</p>
   </div>
 </header>
 
@@ -273,9 +442,9 @@
     <div class="section-label">01 — About</div>
     <h2 class="section-title">Bio</h2>
     <div class="bio">
-      <p>I'm a .NET full-stack developer with 6 years of experience at Cognizant, currently pursuing a Master's focused on AI and Data Science in the United States. My interest in AI/ML grew organically from using tools like GitHub Copilot in Visual Studio, where I discovered how much faster and more effective my development work could become — that curiosity led me to explore the field more deeply.</p>
-      <p>Outside of development, I'm also an artist. I've been sketching for most of my life and started acrylic painting shortly before moving to the US — for me, painting feels like a form of meditation, similar to a yoga session. I enjoy exploring different creative crafts, including pottery, and I also play table tennis, a hobby I picked up during my time at Cognizant.</p>
-      <p>I don't have one fixed technical goal right now, but I'm someone who's always curious to learn new things at work — whether that's deployment processes, Stripe integrations, Entra ID, or whatever comes up. At the same time, I try not to lose sight of things outside of work that matter to me, like painting and table tennis. I once set a goal to paint at least once every 15 days, and though other commitments have made that harder to keep up with, I don't want to force it and risk losing my love for it completely — I'd rather stay curious and consistent in my own way, both technically and creatively.</p>
+      <p class="reveal">I'm a .NET full-stack developer with 6 years of experience at Cognizant, currently pursuing a Master's focused on AI and Data Science in the United States. My interest in AI/ML grew organically from using tools like GitHub Copilot in Visual Studio, where I discovered how much faster and more effective my development work could become. That curiosity led me to explore the field more deeply.</p>
+      <p class="reveal">Outside of development, I'm also an artist. I've been sketching for most of my life and started acrylic painting shortly before moving to the US. For me, painting feels like a form of meditation, similar to a yoga session. I enjoy exploring different creative crafts, including pottery, and I also play table tennis, a hobby I picked up during my time at Cognizant.</p>
+      <p class="reveal">I don't have one fixed technical goal right now, but I'm someone who's always curious to learn new things at work, whether that's deployment processes, Stripe integrations, Entra ID, or whatever comes up. At the same time, I try not to lose sight of things outside of work that matter to me, like painting and table tennis. I once set a goal to paint at least once every 15 days, and though other commitments have made that harder to keep up with, I don't want to force it and risk losing my love for it completely. I'd rather stay curious and consistent in my own way, both technically and creatively.</p>
     </div>
   </div>
 </section>
@@ -283,18 +452,147 @@
 <section class="valueprop">
   <div class="section-inner">
     <div class="section-label">02 — Value Proposition</div>
-    <blockquote>
-      "I bring a fast, reliable approach to problem-solving — colleagues often point to how quickly I resolve bugs — paired with a habit of asking clarifying questions that has, more than once, uncovered real requirement changes others missed. I believe in being a strong team contributor, but I also hold myself to learning everything I can hands-on, rather than relying only on what gets divided out to me. That combination of curiosity, thoroughness, and follow-through is what I bring to any team or project."
+    <blockquote class="reveal">
+      "I bring a fast, reliable approach to problem-solving (colleagues often point to how quickly I resolve bugs), paired with a habit of asking clarifying questions that has, more than once, uncovered real requirement changes others missed. I believe in being a strong team contributor, but I also hold myself to learning everything I can hands-on, rather than relying only on what gets divided out to me. That combination of curiosity, thoroughness, and follow-through is what I bring to any team or project."
     </blockquote>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="skills-wrap">
+    <div class="section-label">03 — Skills</div>
+    <h2 class="section-title">What I Work With</h2>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Languages &amp; Frameworks</div>
+      <div class="skill-tags">
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">.NET Core</span>
+        <span class="skill-tag">ASP.NET MVC</span>
+        <span class="skill-tag">ASP.NET Web API</span>
+        <span class="skill-tag">Entity Framework Core</span>
+        <span class="skill-tag">React.js</span>
+        <span class="skill-tag">Angular</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">HTML5 &amp; CSS</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Databases</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL Server</span>
+        <span class="skill-tag">Oracle Database</span>
+        <span class="skill-tag">T-SQL</span>
+        <span class="skill-tag">PL/SQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">SSIS</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Cloud &amp; DevOps</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft Azure</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">CI/CD</span>
+        <span class="skill-tag">Microservices</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Stripe Integrations</span>
+        <span class="skill-tag">Entra ID</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Engineering Practices</div>
+      <div class="skill-tags">
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Design Patterns</span>
+        <span class="skill-tag">Object-Oriented Design</span>
+        <span class="skill-tag">Unit Testing</span>
+        <span class="skill-tag">Agile Methodologies</span>
+        <span class="skill-tag">Code Review</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">AI &amp; Machine Learning</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Prompt Engineering</span>
+        <span class="skill-tag">Design Thinking</span>
+        <span class="skill-tag">Custom GPT Development</span>
+        <span class="skill-tag">Claude &amp; ChatGPT</span>
+        <span class="skill-tag">ML / DL Fundamentals</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Data</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Data Cleaning &amp; Validation</span>
+        <span class="skill-tag">Data Governance</span>
+        <span class="skill-tag">ETL</span>
+        <span class="skill-tag">Excel / SQL Analysis</span>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-label">Working Style</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Fast Bug Resolution</span>
+        <span class="skill-tag">Clarifying Questions</span>
+        <span class="skill-tag">Proactive Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="section-label reveal">04 — Testimonials</div>
+  <h2 class="section-title reveal">What People Say</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <span class="testimonial-quote-mark">"</span>
+      <p>Pranitha picks up new tools fast and consistently finds edge cases the rest of the team missed.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">SR</div>
+        <div>
+          <div class="testimonial-name">Srinivas</div>
+          <div class="testimonial-role">Manager</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <span class="testimonial-quote-mark">"</span>
+      <p>Reliable, thorough, and always asking the right clarifying questions before diving in.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">BC</div>
+        <div>
+          <div class="testimonial-name">Benilda Cipcon</div>
+          <div class="testimonial-role">IT Director, Atgov</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <span class="testimonial-quote-mark">"</span>
+      <p>One of the fastest bug-fixers I've worked with. And somehow still finds time to paint.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">RA</div>
+        <div>
+          <div class="testimonial-name">Ravi</div>
+          <div class="testimonial-role">IT Director, Cognizant</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="work">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">03 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">05 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 1</h2>
 
-    <div class="placard">
+    <div class="placard reveal">
       <div class="plate-label">Artifact — AI Lab</div>
       <h3>Building an AI Painting Assistant</h3>
       <p style="color:var(--text-dim-on-ink); font-size:15px;">I made a chatbot to learn how AI tools work.</p>
@@ -319,33 +617,37 @@
     </div>
 
     <div class="artifact-body">
-      <div class="field">
+      <div class="field reveal">
         <div class="f-label">Objective</div>
-        <p>I wanted to learn how different AI tools work, and I also wanted to solve a real problem I personally have — struggling to figure out the right materials and techniques when trying a new painting style, like alcohol ink painting.</p>
+        <p>I wanted to learn how different AI tools work, and I also wanted to solve a real problem I personally have: struggling to figure out the right materials and techniques when trying a new painting style, like alcohol ink painting.</p>
       </div>
-      <div class="field">
+      <div class="field reveal">
         <div class="f-label">Description</div>
-        <p>I tested a prompt in three separate chats using the same LLM and got almost similar responses, except for small differences in the color palettes and how each described the boards and painting process. Then I practiced with a custom GPT by giving it my image and turning it into a cartoon image, along with some details about myself. Third, I went to STORM AI and asked it to create an article on oil painting techniques, but it didn't accept my prompt directly — instead it suggested a few options based on what I gave, and when I selected one of those, it started researching and then creating an article. After that, I did some problem-solving and empathy reflections, and finally built a bot to create a Painting Techniques Assistant.</p>
+        <p>I tested a prompt in three separate chats using the same LLM and got almost similar responses, except for small differences in the color palettes and how each described the boards and painting process. Then I practiced with a custom GPT by giving it my image and turning it into a cartoon image, along with some details about myself. Third, I went to STORM AI and asked it to create an article on oil painting techniques, but it didn't accept my prompt directly. Instead it suggested a few options based on what I gave, and when I selected one of those, it started researching and then creating an article. After that, I did some problem-solving and empathy reflections, and finally built a bot to create a Painting Techniques Assistant.</p>
       </div>
-      <div class="field">
+      <div class="field reveal">
         <div class="f-label">Process</div>
         <p>I planned it first, then tested some prompts in the same LLM and also in a different one (the custom GPT), and then tried building the bot.</p>
       </div>
-      <div class="field">
-        <div class="f-label">Value Proposition</div>
-        <p>This artifact is a complete setup of creating a product — it shows that I can take a project from planning all the way to producing a new product.</p>
+      <div class="field reveal">
+        <div class="f-label">Challenges &amp; Solutions</div>
+        <p>STORM AI didn't accept my prompt directly, which stalled the plan early on. I worked with the options it suggested instead, letting it guide the research and article from there rather than forcing my original prompt.</p>
       </div>
-      <div class="field">
+      <div class="field reveal">
+        <div class="f-label">Value Proposition</div>
+        <p>This artifact is a complete setup of creating a product. It shows that I can take a project from planning all the way to producing a new product.</p>
+      </div>
+      <div class="field reveal">
         <div class="f-label">Unique Value</div>
         <p>Since I am both a developer and an artist, I find it easier to build and plan a product like this, especially one focused on painting techniques. My chatbot greets the user well, asks questions, replies accordingly, gives suggestions, and also provides safety measures.</p>
       </div>
-      <div class="field">
+      <div class="field reveal">
         <div class="f-label">Relevance</div>
         <p>AI is everywhere these days, and it makes developing a product faster. My project shows that I can use AI tools to actually build something, not just talk about them.</p>
       </div>
-      <div class="field">
+      <div class="field reveal">
         <div class="f-label">References</div>
-        <p>Painting Techniques Assistant — <a href="https://chatgpt.com/share/6a4ab518-e214-83ea-95b2-7f41d2576019" target="_blank" style="color:var(--ultramarine-deep);">live demo</a></p>
+        <p>Painting Techniques Assistant: <a href="https://chatgpt.com/share/6a4ab518-e214-83ea-95b2-7f41d2576019" target="_blank" style="color:var(--ultramarine-deep);">live demo</a></p>
         <a class="demo-btn" href="https://chatgpt.com/share/6a4ab518-e214-83ea-95b2-7f41d2576019" target="_blank">
           View Demo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
@@ -355,11 +657,187 @@
   </div>
 </section>
 
+<section id="work2">
+  <div class="artifact-wrap">
+    <div class="section-label" style="text-align:center;">06 — Featured Work</div>
+    <h2 class="section-title" style="text-align:center;">Artifact 2</h2>
+
+    <div class="placard reveal">
+      <div class="plate-label">Artifact — Technical Report</div>
+      <h3>Machine Learning vs. Deep Learning: A Real-World Comparison</h3>
+      <p style="color:var(--text-dim-on-ink); font-size:15px;">Explaining a complex technical distinction through real-world examples.</p>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="k">Focus</div>
+          <div class="v">Analytical Writing</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Examples</div>
+          <div class="v">Fraud Detection, Facial Recognition</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Status</div>
+          <div class="v">Completed Report</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Type</div>
+          <div class="v">Technical Comparison Report</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-body">
+      <div class="field reveal">
+        <div class="f-label">Introduction</div>
+        <p>Same problem, two different tools. Here's how to tell them apart.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Challenges &amp; Solutions</div>
+        <p>The real challenge was explaining a complex technical distinction without leaning on jargon. I solved it by grounding each concept in a concrete, real-world example instead of an abstract definition.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Machine Learning</div>
+        <div class="f-sublabel">Example: Fraud Detection</div>
+        <p>Banks flag fraud with simple ML. Structured data like amount and location can just be queried directly. Deep learning would be slower, costlier, and harder to explain.</p>
+      </div>
+      <div class="compare-wrap single reveal">
+        <div class="compare-card ml">
+          <div class="compare-eyebrow">Machine Learning</div>
+          <div class="compare-title">Fraud Detection</div>
+          <div class="datatable">
+            <div class="scanbar"></div>
+            <div class="datarow head"><div>Amount</div><div>Location</div><div>Time</div><div>Status</div></div>
+            <div class="datarow"><div>$42</div><div>Ohio</div><div>14:02</div><div>OK</div></div>
+            <div class="datarow"><div>$18</div><div>Ohio</div><div>14:05</div><div>OK</div></div>
+            <div class="datarow flag"><div>$2,400</div><div>Lagos</div><div>02:11</div><div>FLAG</div></div>
+            <div class="datarow"><div>$65</div><div>Ohio</div><div>14:09</div><div>OK</div></div>
+          </div>
+          <p class="compare-caption">Structured fields can be queried directly, no pattern-learning needed.</p>
+        </div>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Deep Learning</div>
+        <div class="f-sublabel">Example: Facial Recognition</div>
+        <p>Face ID needs deep learning. A single pixel means nothing on its own. Only by finding patterns across all pixels together does a face emerge. Simple ML tops out under 10% accurate here.</p>
+      </div>
+      <div class="compare-wrap single reveal">
+        <div class="compare-card dl">
+          <div class="compare-eyebrow">Deep Learning</div>
+          <div class="compare-title">Facial Recognition</div>
+          <div class="pixelgrid">
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:1.02s;"></div>
+              <div class="px on" style="animation-delay:0.04s;"></div>
+              <div class="px on" style="animation-delay:0.44s;"></div>
+              <div class="px on" style="animation-delay:0.36s;"></div>
+              <div class="px on" style="animation-delay:1.18s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:1.08s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:1.43s;"></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.14s;"></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.68s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.05s;"></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.35s;"></div>
+              <div class="px on" style="animation-delay:0.81s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.04s;"></div>
+              <div class="px on" style="animation-delay:0.32s;"></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:1.04s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.87s;"></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.35s;"></div>
+              <div class="px on" style="animation-delay:0.94s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:1.3s;"></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.01s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:1.29s;"></div>
+              <div class="px on" style="animation-delay:1.12s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.54s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.25s;"></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:1.53s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.54s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+              <div class="px on" style="animation-delay:0.15s;"></div>
+              <div class="px on" style="animation-delay:0.15s;"></div>
+              <div class="px on" style="animation-delay:1.36s;"></div>
+              <div class="px on" style="animation-delay:0.97s;"></div>
+              <div class="px on" style="animation-delay:1.29s;"></div>
+              <div class="px" style=""></div>
+              <div class="px" style=""></div>
+          </div>
+          <p class="compare-caption">One pixel means nothing alone; the pattern only emerges together.</p>
+        </div>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Value Proposition</div>
+        <p>I can turn a complex technical distinction into something anyone can follow.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Reflection</div>
+        <p>A different skill than Artifact 1: analytical reasoning over hands-on building, with depth for the hiring manager who wants to see it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer id="contact">
   <div class="name">Pranitha Kotla</div>
   <a class="footer-link" href="https://www.linkedin.com/in/pranitha-kotla-007134279/" target="_blank">linkedin.com/in/pranitha-kotla</a>
-  <div class="copy">Portfolio — Machine Learning Fundamentals</div>
+  <div class="copy">Portfolio: Machine Learning Fundamentals</div>
 </footer>
 
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
