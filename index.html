@@ -248,6 +248,40 @@
     color:var(--ivory); opacity:0.75; margin-bottom:6px;
   }
   .compare-title{ color:var(--ivory); font-size:19px; font-weight:600; margin-bottom:14px; }
+  .compare-caption{ font-size:13px; color:var(--text-dim-on-ink); margin-top:8px; }
+
+  /* --- Timeline: patience / timing visual --- */
+  .tl-track{
+    position:relative; height:4px; background:rgba(255,255,255,0.15);
+    border-radius:2px; margin:4px 0 0;
+  }
+  .tl-fill{
+    position:absolute; left:0; top:0; height:100%; width:0%;
+    background:var(--ivory); animation:tlFill 8s ease-in-out infinite;
+  }
+  @keyframes tlFill{ 0%{ width:0%; } 92%{ width:100%; } 100%{ width:100%; } }
+  .tl-dots{
+    display:flex; justify-content:space-between; position:relative;
+    margin:0 0 50px;
+  }
+  .tl-dot{
+    width:12px; height:12px; border-radius:50%;
+    background:rgba(255,255,255,0.25); position:relative; opacity:0.5;
+    flex-shrink:0;
+  }
+  .tl-dot span{
+    position:absolute; top:18px; left:50%; transform:translateX(-50%);
+    font-family:'JetBrains Mono',monospace; font-size:10px; line-height:1.4;
+    color:var(--ivory); opacity:0.9; white-space:nowrap; text-align:center;
+  }
+  .tl-dot:first-child span{ left:0; transform:none; text-align:left; }
+  .tl-dot:last-child span{ left:auto; right:0; transform:none; text-align:right; }
+  .tl-dot.lit{ animation:tlDotLight 8s ease-in-out infinite; }
+  @keyframes tlDotLight{
+    0%{ background:var(--ivory); opacity:1; }
+    8%{ background:rgba(255,255,255,0.25); opacity:0.5; }
+    100%{ background:rgba(255,255,255,0.25); opacity:0.5; }
+  }
 
   /* --- ML: data scan visual --- */
   .datatable{
@@ -817,6 +851,85 @@
       <div class="field reveal">
         <div class="f-label">Reflection</div>
         <p>A different skill than Artifact 1: analytical reasoning over hands-on building, with depth for the hiring manager who wants to see it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work3">
+  <div class="artifact-wrap">
+    <div class="section-label" style="text-align:center;">07 — Featured Work</div>
+    <h2 class="section-title" style="text-align:center;">Artifact 3</h2>
+
+    <div class="placard reveal">
+      <div class="plate-label">Artifact — Leadership Reflection</div>
+      <h3>Leading Through Resistance: Adapting When New Tools Meet Old Expectations</h3>
+      <p style="color:var(--text-dim-on-ink); font-size:15px;">A personal reflection on navigating pushback to AI adoption at work, and what biblical leadership principles taught me about patience and timing.</p>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="k">Focus</div>
+          <div class="v">Adaptive Leadership</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Context</div>
+          <div class="v">Workplace AI Adoption</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Status</div>
+          <div class="v">Completed Reflection</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Type</div>
+          <div class="v">Personal Reflection</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-body">
+      <div class="field reveal">
+        <div class="f-label">Introduction</div>
+        <p>Not every challenge in AI/ML work is technical. Sometimes the hardest part is helping the people around you adapt to it.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Description</div>
+        <p>As I started using AI tools to work more efficiently, I ran into real friction with a lead who was uncomfortable with that shift. My faster turnaround times led to more scrutiny, not less, including delays on my own work and fewer opportunities to grow in areas I had specifically asked to develop. This reflection walks through how I approached that tension: choosing patience over confrontation, staying consistent so that when I did speak up it carried real weight, and drawing on the biblical example of Esther, whose strength came from patience and strategic timing rather than force.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Challenges &amp; Solutions</div>
+        <p>The challenge wasn't the technology, it was organizational trust. Rather than pushing back aggressively or disengaging entirely, I chose a middle path: staying respectful, continuing to look for solutions on my own, and preparing to raise the issue directly only when the timing was right, similar to how Esther prepared before approaching the king rather than acting on impulse.</p>
+      </div>
+      <div class="compare-wrap single reveal">
+        <div class="compare-card dl">
+          <div class="compare-eyebrow">The Arc</div>
+          <div class="compare-title">Patience Over Confrontation</div>
+          <div class="tl-track">
+            <div class="tl-fill"></div>
+          </div>
+          <div class="tl-dots">
+            <div class="tl-dot lit" style="animation-delay:0s;"><span>Friction<br>Begins</span></div>
+            <div class="tl-dot lit" style="animation-delay:1.84s;"><span>Choose<br>Patience</span></div>
+            <div class="tl-dot lit" style="animation-delay:3.68s;"><span>Stay<br>Consistent</span></div>
+            <div class="tl-dot lit" style="animation-delay:5.52s;"><span>Wait for<br>Timing</span></div>
+            <div class="tl-dot lit" style="animation-delay:7.36s;"><span>Speak<br>Up</span></div>
+          </div>
+          <p class="compare-caption">Like Esther preparing before approaching the king: each stage built the standing to be heard, rather than forcing the moment.</p>
+        </div>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Value Proposition</div>
+        <p>This artifact shows that I can navigate resistance to new technology thoughtfully, without losing self-respect or burning relationships, a skill that matters as much as technical ability when introducing AI tools into any team or organization.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Unique Value</div>
+        <p>Unlike Artifacts 1 and 2, which show what I can build and explain, this artifact shows how I handle the human side of AI adoption: the skepticism, friction, and change management that come with introducing new tools into an existing team culture.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Relevance</div>
+        <p>AI/ML careers increasingly involve convincing others, not just building things. Being able to navigate resistance calmly and strategically is a real, transferable leadership skill in this field.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Reflection</div>
+        <p>A different skill than Artifacts 1 and 2 again: emotional intelligence and adaptive leadership under real workplace pressure, showing that my growth in AI/ML isn't only technical.</p>
       </div>
     </div>
   </div>
