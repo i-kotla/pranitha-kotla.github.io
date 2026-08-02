@@ -332,6 +332,34 @@
     100%{ opacity:0; }
   }
 
+  /* --- SIGNAL: clarity vs noise visual --- */
+  .signalwrap{
+    background:rgba(255,255,255,0.08); border-radius:10px; padding:16px;
+    margin-bottom:16px; overflow:hidden;
+  }
+  .signal-row{ margin-bottom:14px; }
+  .signal-row:last-child{ margin-bottom:0; }
+  .signal-label{
+    font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--ivory); opacity:0.75; margin-bottom:6px;
+  }
+  .signal-bars{ display:flex; align-items:flex-end; gap:3px; height:34px; }
+  .signal-bars .bar{
+    flex:1; background:rgba(255,255,255,0.2); border-radius:2px 2px 0 0;
+  }
+  .signal-bars.noisy .bar{ animation:barNoise 1.8s ease-in-out infinite; }
+  .signal-bars.clear .bar{ background:var(--ivory); animation:barClear 2.6s ease-in-out infinite; }
+  @keyframes barNoise{
+    0%,100%{ height:20%; opacity:0.35; }
+    25%{ height:80%; opacity:0.8; }
+    50%{ height:15%; opacity:0.3; }
+    75%{ height:60%; opacity:0.7; }
+  }
+  @keyframes barClear{
+    0%,100%{ height:30%; }
+    50%{ height:90%; }
+  }
+
   /* SKILLS */
   #skills{ background:var(--canvas); padding:70px 24px 76px; }
   #skills .section-label{ color:var(--sienna); text-align:center; }
@@ -930,6 +958,97 @@
       <div class="field reveal">
         <div class="f-label">Reflection</div>
         <p>A different skill than Artifacts 1 and 2 again: emotional intelligence and adaptive leadership under real workplace pressure, showing that my growth in AI/ML isn't only technical.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work4">
+  <div class="artifact-wrap">
+    <div class="section-label" style="text-align:center;">08 — Featured Work</div>
+    <h2 class="section-title" style="text-align:center;">Artifact 4</h2>
+
+    <div class="placard reveal">
+      <div class="plate-label">Artifact — Devotional Reflection</div>
+      <h3>Communication in Leadership: Why Clarity Prevents Costly Misunderstandings</h3>
+      <p style="color:var(--text-dim-on-ink); font-size:15px;">A devotional reflection on how clear communication protects both trust and technical accuracy.</p>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="k">Focus</div>
+          <div class="v">Requirements Communication</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Context</div>
+          <div class="v">Agile Software Development</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Status</div>
+          <div class="v">Completed Reflection</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Type</div>
+          <div class="v">Personal Devotional Reflection</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-body">
+      <div class="field reveal">
+        <div class="f-label">Introduction</div>
+        <p>Not every technical problem starts with bad code. Some start with communication that was never as clear as everyone assumed it was.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Description</div>
+        <p>Whenever a requirement is unclear, I won't move forward with development until I understand it, even if that means asking a question that feels obvious. I ask in a shared team channel rather than privately, so everyone sees the question and the answer, and I link the relevant user story as a reference point. When I apply a fix, I document it with recordings or screenshots so there's a clear record of what changed and why. This reflection grew out of a real situation: a bug appeared on one page, and an identical bug existed on a related page, but because there was no clear process for linking the two, I was blamed later for not "checking the entire flow," even though nothing in the original requirements asked for that. Afterward, I changed my own practice, asking that each page get its own explicitly linked bug ticket, so the connection between them is documented instead of assumed. This experience connects to 1 Corinthians 14:8-9, where Paul writes that a trumpet has to sound a clear call or it's just noise. An unclear requirement isn't just a weak signal, in a business context it can function like no signal at all, and yet the consequences of that gap often land on the person closest to the work rather than the source of the ambiguity.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Challenges &amp; Solutions</div>
+        <p>The real challenge was being held accountable for gaps that were never clearly assigned or documented in the first place. Rather than absorbing that quietly, I built a personal practice around it: ask clarifying questions publicly, document the ask as proof it was raised, and push for clearer bug-tracking conventions going forward so the same ambiguity couldn't repeat itself.</p>
+      </div>
+      <div class="compare-wrap single reveal">
+        <div class="compare-card ml">
+          <div class="compare-eyebrow">The Signal</div>
+          <div class="compare-title">Noise vs. a Clear Call</div>
+          <div class="signalwrap">
+            <div class="signal-row">
+              <div class="signal-label">Unclear Requirement</div>
+              <div class="signal-bars noisy">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              </div>
+            </div>
+            <div class="signal-row">
+              <div class="signal-label">Documented &amp; Clarified</div>
+              <div class="signal-bars clear">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              </div>
+            </div>
+          </div>
+          <p class="compare-caption">"A trumpet must sound a clear call, or it's just noise." — 1 Corinthians 14:8-9</p>
+        </div>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Value Proposition</div>
+        <p>This reflection shows that I treat precise documentation and clear requirements as a professional discipline, not an afterthought. That same discipline matters directly in AI/ML work: an ambiguous labeling instruction or a poorly specified prompt produces the same kind of downstream failure as an ambiguous development requirement.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Unique Value</div>
+        <p>Unlike a purely process-driven habit, this practice is grounded in a value I hold intentionally rather than a rule I follow by default. Framing it through 1 Corinthians 14:8-9 shows that my communication style comes from a deeper conviction about clarity, not just professional convention.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Relevance</div>
+        <p>AI/ML projects live or die on clear specifications, whether that's a labeling guideline for a training dataset, a prompt, or a requirement handed to a data pipeline. This reflection shows that I already practice the discipline of removing ambiguity before building anything, a mindset that transfers directly into ML requirement-gathering and dataset documentation.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Reflection</div>
+        <p>Each artifact in this portfolio highlights a different skill: Artifact 1 shows hands-on building, Artifact 2 shows technical communication, Artifact 3 shows adaptive leadership under organizational resistance, and this artifact shows a values-driven discipline around clarity and documentation. Together, they round out both the technical and human sides of working in AI/ML.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">References</div>
+        <p>The Bible. (n.d.). New International Version. Biblica. https://www.biblegateway.com (1 Corinthians 14:8-9).</p>
       </div>
     </div>
   </div>
