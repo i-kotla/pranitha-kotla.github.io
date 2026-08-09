@@ -462,6 +462,71 @@
   }
   nav .links a:hover::after{ width:100%; }
 
+  /* SCROLL PROGRESS */
+  #scrollbar{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--ultramarine), var(--ochre));
+    z-index:100; transition:width 0.1s ease-out;
+  }
+
+  /* THEME TOGGLE */
+  .theme-toggle{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    color:var(--text-on-ink); width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    font-size:14px; transition:transform 0.25s ease, background 0.2s ease; flex-shrink:0;
+  }
+  .theme-toggle:hover{ transform:rotate(18deg); background:rgba(255,255,255,0.18); }
+
+  /* DARK MODE OVERRIDES */
+  body.dark{
+    --canvas:#0B1220;
+    --canvas-soft:#101B33;
+    --text-on-canvas:#E8EEFC;
+    --text-dim-on-canvas:#93A8CC;
+  }
+  body.dark .skill-tag{ background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); }
+  body.dark .testimonial-card{ background:#101B33; border-color:rgba(255,255,255,0.08); }
+  body.dark .artifact-body{ background:#101B33; border-color:rgba(255,255,255,0.08); }
+  body.dark .artifact-pill{ background:#101B33; border-color:rgba(255,255,255,0.1); }
+  body.dark #doodleCanvas{ border-color:rgba(255,255,255,0.15); }
+
+  /* SCROLL ANCHOR OFFSET */
+  section[id]{ scroll-margin-top:90px; }
+
+  /* HERO SPOTLIGHT */
+  .spotlight{
+    position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(circle 260px at var(--mx,50%) var(--my,20%), rgba(255,255,255,0.20), transparent 62%);
+  }
+
+  /* ARTIFACT JUMP PILLS */
+  .artifact-pills{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:40px; }
+  .artifact-pill{
+    padding:9px 18px; border-radius:999px; background:var(--canvas-soft);
+    border:1px solid rgba(0,0,0,0.08); font-family:'JetBrains Mono',monospace;
+    font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase;
+    text-decoration:none; color:var(--text-on-canvas);
+    transition:background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .artifact-pill:hover{ background:var(--ultramarine); color:#fff; transform:translateY(-2px); }
+
+  /* DOODLE CANVAS */
+  .doodle-wrap{ display:flex; flex-direction:column; align-items:center; gap:16px; }
+  #doodleCanvas{
+    width:100%; max-width:600px; height:300px; background:#fff;
+    border:1px solid rgba(0,0,0,0.1); border-radius:12px; cursor:crosshair;
+    touch-action:none; box-shadow:0 8px 24px rgba(18,58,122,0.1);
+  }
+  .doodle-controls{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:center; }
+  .doodle-colors{ display:flex; gap:9px; }
+  .doodle-color{
+    width:26px; height:26px; border-radius:50%; border:2px solid transparent;
+    cursor:pointer; padding:0; transition:transform 0.15s ease;
+  }
+  .doodle-color:hover{ transform:scale(1.12); }
+  .doodle-color.active{ border-color:var(--text-on-canvas); transform:scale(1.18); }
+
   .skill-tag{ animation:tagPop 0.5s ease backwards; }
   @keyframes tagPop{
     from{ opacity:0; transform:translateY(6px) scale(0.94); }
@@ -471,22 +536,29 @@
 </head>
 <body>
 
+<div id="scrollbar"></div>
+
 <nav>
   <div class="brand">Pranitha Kotla</div>
-  <div class="links">
-    <a href="#about">About</a>
-    <a href="#audience">Audience</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
+  <div style="display:flex; align-items:center; gap:22px;">
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#audience">Audience</a>
+      <a href="#doodle">Canvas</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
   </div>
 </nav>
 
 <header class="hero">
+  <div class="spotlight"></div>
   <div class="hero-inner">
     <div class="eyebrow">Portfolio</div>
     <h1>Pranitha Kotla</h1>
-    <div class="role-line">.NET Full-Stack Developer <span>·</span> AI/ML Learner <span>·</span> Painter</div>
+    <div class="role-line" id="roleText">.NET Full-Stack Developer · AI/ML Learner · Painter</div>
     <div class="art-gallery">
       <img src="art1.png" alt="Painting by Pranitha Kotla">
       <img src="art2.png" alt="Painting by Pranitha Kotla">
@@ -502,8 +574,8 @@
 
 <section id="about" class="bio-section">
   <div class="section-inner">
-    <div class="section-label">01 — About</div>
-    <h2 class="section-title">Bio</h2>
+    <div class="section-label" style="text-align:center;">01 — About</div>
+    <h2 class="section-title" style="text-align:center;">Bio</h2>
     <div class="bio">
       <p class="reveal">I'm a .NET full-stack developer with 6 years of experience at Cognizant, currently pursuing a Master's focused on AI and Data Science in the United States. My interest in AI/ML grew organically from using tools like GitHub Copilot in Visual Studio, where I discovered how much faster and more effective my development work could become. That curiosity led me to explore the field more deeply.</p>
       <p class="reveal">Outside of development, I'm also an artist. I've been sketching for most of my life and started acrylic painting shortly before moving to the US. For me, painting feels like a form of meditation, similar to a yoga session. I enjoy exploring different creative crafts, including pottery, and I also play table tennis, a hobby I picked up during my time at Cognizant.</p>
@@ -523,17 +595,38 @@
 
 <section id="audience">
   <div class="section-inner">
-    <div class="section-label">03 — Target Audience</div>
-    <h2 class="section-title">Who This Is For</h2>
+    <div class="section-label" style="text-align:center;">03 — Target Audience</div>
+    <h2 class="section-title" style="text-align:center;">Who This Is For</h2>
     <div class="bio">
       <p class="reveal">This portfolio is built primarily for hiring managers and recruiters evaluating candidates for AI/ML and full-stack development roles, as well as academic reviewers assessing my growth during my Master's program. It's relevant to them because it shows more than a list of skills: it demonstrates hands-on AI tool-building (Artifact 1), the ability to communicate technical concepts clearly (Artifact 2), and the interpersonal and leadership judgment needed to introduce AI into real teams (Artifacts 3 and 4) — the combination employers and program evaluators actually look for when assessing someone moving into applied AI/ML work.</p>
     </div>
   </div>
 </section>
 
+<section id="doodle">
+  <div class="section-inner" style="max-width:640px;">
+    <div class="section-label" style="text-align:center;">04 — Leave Your Mark</div>
+    <h2 class="section-title" style="text-align:center;">A Little Canvas</h2>
+    <p style="text-align:center; color:var(--text-dim-on-canvas); margin-bottom:30px;" class="reveal">I paint in my off hours — here's a tiny canvas for you to leave a stroke of your own before you go.</p>
+    <div class="doodle-wrap reveal">
+      <canvas id="doodleCanvas" width="600" height="300"></canvas>
+      <div class="doodle-controls">
+        <div class="doodle-colors">
+          <button class="doodle-color active" style="background:#2F6FE0" data-color="#2F6FE0" aria-label="Ultramarine"></button>
+          <button class="doodle-color" style="background:#123A7A" data-color="#123A7A" aria-label="Deep blue"></button>
+          <button class="doodle-color" style="background:#78A6F0" data-color="#78A6F0" aria-label="Light blue"></button>
+          <button class="doodle-color" style="background:#0F2547" data-color="#0F2547" aria-label="Ink"></button>
+          <button class="doodle-color" style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.2) !important;" data-color="#FFFFFF" aria-label="Eraser"></button>
+        </div>
+        <button id="doodleClear" class="demo-btn" style="margin-top:0; background:var(--deepblue);">Clear Canvas</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="skills-wrap">
-    <div class="section-label">04 — Skills</div>
+    <div class="section-label">05 — Skills</div>
     <h2 class="section-title">What I Work With</h2>
 
     <div class="skill-group reveal">
@@ -621,7 +714,7 @@
 </section>
 
 <section id="testimonials">
-  <div class="section-label reveal">05 — Testimonials</div>
+  <div class="section-label reveal">06 — Testimonials</div>
   <h2 class="section-title reveal">What People Say</h2>
   <div class="testimonial-grid">
     <div class="testimonial-card reveal">
@@ -662,8 +755,15 @@
 
 <section id="work">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">06 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">07 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 1</h2>
+
+    <div class="artifact-pills reveal">
+      <a href="#work" class="artifact-pill">01 · AI Lab</a>
+      <a href="#work2" class="artifact-pill">02 · ML vs DL</a>
+      <a href="#work3" class="artifact-pill">03 · Leadership</a>
+      <a href="#work4" class="artifact-pill">04 · Communication</a>
+    </div>
 
     <div class="placard reveal">
       <div class="plate-label">Artifact — AI Lab</div>
@@ -740,7 +840,7 @@
 
 <section id="work2">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">07 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">08 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 2</h2>
 
     <div class="placard reveal">
@@ -922,7 +1022,7 @@
 
 <section id="work3">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">08 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">09 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 3</h2>
 
     <div class="placard reveal">
@@ -1017,7 +1117,7 @@
 
 <section id="work4">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">09 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">10 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 4</h2>
 
     <div class="placard reveal">
@@ -1134,6 +1234,139 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* SCROLL PROGRESS BAR */
+  const scrollbar = document.getElementById('scrollbar');
+  function updateScrollbar(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    if(scrollbar) scrollbar.style.width = (scrolled || 0) + '%';
+  }
+  window.addEventListener('scroll', updateScrollbar);
+  updateScrollbar();
+
+  /* DARK MODE TOGGLE */
+  const themeBtn = document.getElementById('themeToggle');
+  if(themeBtn){
+    if(localStorage.getItem('pk-theme') === 'dark'){
+      document.body.classList.add('dark');
+      themeBtn.textContent = '☀️';
+    }
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('pk-theme', isDark ? 'dark' : 'light');
+    });
+  }
+
+  /* HERO TYPING EFFECT */
+  (function(){
+    const el = document.getElementById('roleText');
+    if(!el) return;
+    const full = el.textContent;
+    el.textContent = '';
+    el.style.borderRight = '2px solid rgba(255,255,255,0.7)';
+    let i = 0;
+    function type(){
+      el.textContent = full.slice(0, i);
+      i++;
+      if(i <= full.length){
+        setTimeout(type, 32);
+      } else {
+        setTimeout(() => { el.style.borderRight = 'none'; }, 400);
+      }
+    }
+    type();
+  })();
+
+  /* HERO CURSOR SPOTLIGHT */
+  const heroEl = document.querySelector('.hero');
+  if(heroEl){
+    heroEl.addEventListener('mousemove', (e) => {
+      const rect = heroEl.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      heroEl.style.setProperty('--mx', x + '%');
+      heroEl.style.setProperty('--my', y + '%');
+    });
+  }
+
+  /* MAGNETIC BUTTONS */
+  document.querySelectorAll('.demo-btn').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+  });
+
+  /* DOODLE CANVAS */
+  (function(){
+    const canvas = document.getElementById('doodleCanvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 4;
+
+    let drawing = false, lastX = 0, lastY = 0, currentColor = '#2F6FE0';
+
+    function getPos(e){
+      const rect = canvas.getBoundingClientRect();
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: (cx - rect.left) * (canvas.width / rect.width),
+        y: (cy - rect.top) * (canvas.height / rect.height)
+      };
+    }
+    function start(e){
+      drawing = true;
+      const p = getPos(e);
+      lastX = p.x; lastY = p.y;
+      e.preventDefault();
+    }
+    function move(e){
+      if(!drawing) return;
+      const p = getPos(e);
+      ctx.strokeStyle = currentColor;
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+      lastX = p.x; lastY = p.y;
+      e.preventDefault();
+    }
+    function end(){ drawing = false; }
+
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start, { passive:false });
+    canvas.addEventListener('touchmove', move, { passive:false });
+    canvas.addEventListener('touchend', end);
+
+    document.querySelectorAll('.doodle-color').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentColor = btn.dataset.color;
+        document.querySelectorAll('.doodle-color').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    const clearBtn = document.getElementById('doodleClear');
+    if(clearBtn){
+      clearBtn.addEventListener('click', () => {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      });
+    }
+  })();
 </script>
 </body>
 </html>
