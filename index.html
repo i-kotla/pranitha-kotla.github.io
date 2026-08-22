@@ -527,6 +527,22 @@
   .doodle-color:hover{ transform:scale(1.12); }
   .doodle-color.active{ border-color:var(--text-on-canvas); transform:scale(1.18); }
 
+  /* LABELING CANVAS (Artifact 5) */
+  .label-wrap{ display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:14px; }
+  .label-stage{ position:relative; display:inline-block; line-height:0; touch-action:none; max-width:100%; }
+  .label-stage img{ display:block; max-width:100%; width:420px; height:auto; border-radius:10px; border:1px solid rgba(0,0,0,0.1); box-shadow:0 8px 24px rgba(18,58,122,0.1); }
+  #labelBoxCanvas{ position:absolute; top:0; left:0; cursor:crosshair; border-radius:10px; }
+  .label-controls{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; justify-content:center; }
+  .label-tag{
+    padding:7px 15px; border-radius:999px; border:1.5px solid var(--ultramarine); background:transparent;
+    color:var(--ultramarine-deep); font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.03em;
+    cursor:pointer; transition:background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  }
+  .label-tag:hover{ transform:translateY(-1px); }
+  .label-tag.active{ background:var(--ultramarine); color:#fff; border-color:var(--ultramarine); }
+  .label-hint{ font-size:13px; color:var(--text-dim-on-canvas); text-align:center; }
+  .label-list{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-on-canvas); text-align:center; min-height:18px; }
+
   .skill-tag{ animation:tagPop 0.5s ease backwards; }
   @keyframes tagPop{
     from{ opacity:0; transform:translateY(6px) scale(0.94); }
@@ -544,9 +560,9 @@
     <div class="links">
       <a href="#about">About</a>
       <a href="#audience">Audience</a>
-      <a href="#doodle">Canvas</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#work">Work</a>
+      <a href="#doodle">Canvas</a>
       <a href="#contact">Contact</a>
     </div>
     <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
@@ -598,35 +614,14 @@
     <div class="section-label" style="text-align:center;">03 — Target Audience</div>
     <h2 class="section-title" style="text-align:center;">Who This Is For</h2>
     <div class="bio">
-      <p class="reveal">This portfolio is built primarily for hiring managers and recruiters evaluating candidates for AI/ML and full-stack development roles, as well as academic reviewers assessing my growth during my Master's program. It's relevant to them because it shows more than a list of skills: it demonstrates hands-on AI tool-building (Artifact 1), the ability to communicate technical concepts clearly (Artifact 2), and the interpersonal and leadership judgment needed to introduce AI into real teams (Artifacts 3 and 4) — the combination employers and program evaluators actually look for when assessing someone moving into applied AI/ML work.</p>
-    </div>
-  </div>
-</section>
-
-<section id="doodle">
-  <div class="section-inner" style="max-width:640px;">
-    <div class="section-label" style="text-align:center;">04 — Leave Your Mark</div>
-    <h2 class="section-title" style="text-align:center;">A Little Canvas</h2>
-    <p style="text-align:center; color:var(--text-dim-on-canvas); margin-bottom:30px;" class="reveal">I paint in my off hours — here's a tiny canvas for you to leave a stroke of your own before you go.</p>
-    <div class="doodle-wrap reveal">
-      <canvas id="doodleCanvas" width="600" height="300"></canvas>
-      <div class="doodle-controls">
-        <div class="doodle-colors">
-          <button class="doodle-color active" style="background:#2F6FE0" data-color="#2F6FE0" aria-label="Ultramarine"></button>
-          <button class="doodle-color" style="background:#123A7A" data-color="#123A7A" aria-label="Deep blue"></button>
-          <button class="doodle-color" style="background:#78A6F0" data-color="#78A6F0" aria-label="Light blue"></button>
-          <button class="doodle-color" style="background:#0F2547" data-color="#0F2547" aria-label="Ink"></button>
-          <button class="doodle-color" style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.2) !important;" data-color="#FFFFFF" aria-label="Eraser"></button>
-        </div>
-        <button id="doodleClear" class="demo-btn" style="margin-top:0; background:var(--deepblue);">Clear Canvas</button>
-      </div>
+      <p class="reveal">This portfolio is built primarily for hiring managers and recruiters evaluating candidates for AI/ML and full-stack development roles, as well as academic reviewers assessing my growth during my Master's program. It's relevant to them because it shows more than a list of skills: it demonstrates hands-on AI tool-building (Artifact 1), the ability to communicate technical concepts clearly (Artifact 2), the interpersonal and leadership judgment needed to introduce AI into real teams (Artifacts 3 and 4), and the discipline to turn that judgment into an actual AI/ML deliverable (Artifact 5) — the combination employers and program evaluators actually look for when assessing someone moving into applied AI/ML work.</p>
     </div>
   </div>
 </section>
 
 <section id="skills">
   <div class="skills-wrap">
-    <div class="section-label">05 — Skills</div>
+    <div class="section-label">04 — Skills</div>
     <h2 class="section-title">What I Work With</h2>
 
     <div class="skill-group reveal">
@@ -714,7 +709,7 @@
 </section>
 
 <section id="testimonials">
-  <div class="section-label reveal">06 — Testimonials</div>
+  <div class="section-label reveal">05 — Testimonials</div>
   <h2 class="section-title reveal">What People Say</h2>
   <div class="testimonial-grid">
     <div class="testimonial-card reveal">
@@ -755,7 +750,7 @@
 
 <section id="work">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">07 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">06 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 1</h2>
 
     <div class="artifact-pills reveal">
@@ -763,6 +758,7 @@
       <a href="#work2" class="artifact-pill">02 · ML vs DL</a>
       <a href="#work3" class="artifact-pill">03 · Leadership</a>
       <a href="#work4" class="artifact-pill">04 · Communication</a>
+      <a href="#work5" class="artifact-pill">05 · Labeling Guide</a>
     </div>
 
     <div class="placard reveal">
@@ -840,7 +836,7 @@
 
 <section id="work2">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">08 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">07 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 2</h2>
 
     <div class="placard reveal">
@@ -1008,6 +1004,14 @@
         <p>I can turn a complex technical distinction into something anyone can follow.</p>
       </div>
       <div class="field reveal">
+        <div class="f-label">Unique Value</div>
+        <p>Rather than defining ML and DL in the abstract, I built two small interactive visualizations by hand so a reader can watch the distinction happen, a structured table getting scanned versus a scattered grid of pixels resolving into a pattern, instead of just reading a definition of it.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Relevance</div>
+        <p>Knowing when a problem needs traditional ML versus deep learning is a real architectural decision in applied AI/ML work, and being able to explain that choice clearly to a non-technical stakeholder is just as valuable as being able to make the choice correctly in the first place.</p>
+      </div>
+      <div class="field reveal">
         <div class="f-label">Reflection</div>
         <p>A different skill than Artifact 1: analytical reasoning over hands-on building, with depth for the hiring manager who wants to see it.</p>
       </div>
@@ -1022,7 +1026,7 @@
 
 <section id="work3">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">09 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">08 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 3</h2>
 
     <div class="placard reveal">
@@ -1117,7 +1121,7 @@
 
 <section id="work4">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">10 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">09 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 4</h2>
 
     <div class="placard reveal">
@@ -1208,11 +1212,97 @@
       </div>
       <div class="field reveal">
         <div class="f-label">Reflection</div>
-        <p>Each artifact in this portfolio highlights a different skill: Artifact 1 shows hands-on building, Artifact 2 shows technical communication, Artifact 3 shows adaptive leadership under organizational resistance, and this artifact shows a values-driven discipline around clarity and documentation. Together, they round out both the technical and human sides of working in AI/ML.</p>
+        <p>This artifact makes the case for clarity as a value. Artifact 5 is where I put that value directly to work on an AI/ML deliverable, a labeling guideline for a small image dataset, so the discipline isn't just something I believe in, it's something I can show.</p>
       </div>
       <div class="field reveal">
         <div class="f-label">References</div>
         <p>The Bible. (n.d.). New International Version. Biblica. https://www.biblegateway.com (1 Corinthians 14:8-9).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work5">
+  <div class="artifact-wrap">
+    <div class="section-label" style="text-align:center;">10 — Featured Work</div>
+    <h2 class="section-title" style="text-align:center;">Artifact 5</h2>
+
+    <div class="placard reveal">
+      <div class="plate-label">Artifact — AI/ML Documentation</div>
+      <h3>Labeling Guideline for a Painting-Style Image Dataset</h3>
+      <p style="color:var(--text-dim-on-ink); font-size:15px;">A short, edge-case-driven labeling guide built for a small dataset of my own painting photos.</p>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="k">Focus</div>
+          <div class="v">Dataset Labeling &amp; Annotation</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Dataset</div>
+          <div class="v">40 Painting Photos, 5 Categories</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Status</div>
+          <div class="v">Completed Guideline</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Type</div>
+          <div class="v">AI/ML Documentation Artifact</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-body">
+      <div class="field reveal">
+        <div class="f-label">What It Is</div>
+        <p>An ambiguous labeling instruction fails a dataset the same way an ambiguous requirement fails a sprint (Artifact 4). This rubric removes that ambiguity for a small dataset of my own painting photos, defining every style category by technique, not by the resulting image, so the same photo gets the same label every time.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Edge Cases It Resolves</div>
+        <p>An alcohol ink pour that accidentally resolves into a recognizable image, a realistic subject over an abstract background, and blurry or duplicate photos — each gets an explicit tie-breaker rule instead of being left to judgment.</p>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Try It Yourself</div>
+        <p>Pick a category, then draw a box around the subject below — the same core action a labeler performs against a rubric like this one.</p>
+        <div class="label-wrap">
+          <div class="label-stage">
+            <img src="art4.png" alt="Painting by Pranitha Kotla, used as a labeling sample" id="labelImg">
+            <canvas id="labelBoxCanvas"></canvas>
+          </div>
+          <div class="label-controls">
+            <button class="label-tag active" data-tag="Realism">Realism</button>
+            <button class="label-tag" data-tag="Impressionism">Impressionism</button>
+            <button class="label-tag" data-tag="Alcohol Ink">Alcohol Ink</button>
+            <button class="label-tag" data-tag="Mixed Media">Mixed Media</button>
+            <button id="labelClear" class="demo-btn" style="margin-top:0; background:var(--deepblue); padding:6px 16px; font-size:12.5px;">Clear</button>
+          </div>
+          <div class="label-hint">Click a tag above, then drag on the image to draw a labeled box.</div>
+          <div class="label-list" id="labelList"></div>
+        </div>
+      </div>
+      <div class="field reveal">
+        <div class="f-label">Why It Matters</div>
+        <p>Every supervised model starts with labeled data, and its quality is bounded by the clarity of the instructions behind it. This artifact shows I understand dataset quality as a documentation problem, not just a technical one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="doodle">
+  <div class="section-inner" style="max-width:640px;">
+    <div class="section-label" style="text-align:center;">11 — Leave Your Mark</div>
+    <h2 class="section-title" style="text-align:center;">A Little Canvas</h2>
+    <p style="text-align:center; color:var(--text-dim-on-canvas); margin-bottom:30px;" class="reveal">You've made it through all five artifacts — I paint in my off hours, so here's a tiny canvas for you to leave a stroke of your own before you go.</p>
+    <div class="doodle-wrap reveal">
+      <canvas id="doodleCanvas" width="600" height="300"></canvas>
+      <div class="doodle-controls">
+        <div class="doodle-colors">
+          <button class="doodle-color active" style="background:#2F6FE0" data-color="#2F6FE0" aria-label="Ultramarine"></button>
+          <button class="doodle-color" style="background:#123A7A" data-color="#123A7A" aria-label="Deep blue"></button>
+          <button class="doodle-color" style="background:#78A6F0" data-color="#78A6F0" aria-label="Light blue"></button>
+          <button class="doodle-color" style="background:#0F2547" data-color="#0F2547" aria-label="Ink"></button>
+          <button class="doodle-color" style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.2) !important;" data-color="#FFFFFF" aria-label="Eraser"></button>
+        </div>
+        <button id="doodleClear" class="demo-btn" style="margin-top:0; background:var(--deepblue);">Clear Canvas</button>
       </div>
     </div>
   </div>
@@ -1364,6 +1454,100 @@
       clearBtn.addEventListener('click', () => {
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+      });
+    }
+  })();
+
+  /* LABELING BOX TOOL (Artifact 5) */
+  (function(){
+    const img = document.getElementById('labelImg');
+    const canvas = document.getElementById('labelBoxCanvas');
+    if(!img || !canvas) return;
+    const ctx = canvas.getContext('2d');
+    const listEl = document.getElementById('labelList');
+    let boxes = [];
+    let currentTag = 'Realism';
+    let drawing = false, startX = 0, startY = 0, curX = 0, curY = 0;
+
+    function sizeCanvas(){
+      canvas.width = img.clientWidth;
+      canvas.height = img.clientHeight;
+      redraw();
+    }
+    if(img.complete) sizeCanvas(); else img.addEventListener('load', sizeCanvas);
+    window.addEventListener('resize', sizeCanvas);
+
+    const tagColors = { 'Realism':'#2F6FE0', 'Impressionism':'#78A6F0', 'Alcohol Ink':'#1B4FA6', 'Mixed Media':'#5B8FE8' };
+
+    function redraw(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      boxes.forEach(b => drawBox(b.x, b.y, b.w, b.h, b.tag));
+      if(drawing) drawBox(Math.min(startX,curX), Math.min(startY,curY), Math.abs(curX-startX), Math.abs(curY-startY), currentTag);
+      listEl.textContent = boxes.length ? boxes.map((b,i) => `${i+1}. ${b.tag}`).join('   ·   ') : '';
+    }
+
+    function drawBox(x, y, w, h, tag){
+      const c = tagColors[tag] || '#2F6FE0';
+      ctx.strokeStyle = c;
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x, y, w, h);
+      ctx.fillStyle = c;
+      ctx.font = '11px JetBrains Mono, monospace';
+      const tw = ctx.measureText(tag).width + 8;
+      ctx.fillRect(x, Math.max(0, y - 16), tw, 16);
+      ctx.fillStyle = '#fff';
+      ctx.fillText(tag, x + 4, Math.max(11, y - 4));
+    }
+
+    function getPos(e){
+      const rect = canvas.getBoundingClientRect();
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy = e.touches ? e.touches[0].clientY : e.clientY;
+      return { x: cx - rect.left, y: cy - rect.top };
+    }
+
+    function start(e){
+      e.preventDefault();
+      const p = getPos(e);
+      drawing = true; startX = curX = p.x; startY = curY = p.y;
+    }
+    function move(e){
+      if(!drawing) return;
+      e.preventDefault();
+      const p = getPos(e);
+      curX = p.x; curY = p.y;
+      redraw();
+    }
+    function end(){
+      if(!drawing) return;
+      drawing = false;
+      const w = Math.abs(curX - startX), h = Math.abs(curY - startY);
+      if(w > 8 && h > 8){
+        boxes.push({ x: Math.min(startX,curX), y: Math.min(startY,curY), w, h, tag: currentTag });
+      }
+      redraw();
+    }
+
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start, { passive:false });
+    canvas.addEventListener('touchmove', move, { passive:false });
+    canvas.addEventListener('touchend', end);
+
+    document.querySelectorAll('.label-tag[data-tag]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.label-tag[data-tag]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTag = btn.dataset.tag;
+      });
+    });
+
+    const labelClear = document.getElementById('labelClear');
+    if(labelClear){
+      labelClear.addEventListener('click', () => {
+        boxes = [];
+        redraw();
       });
     }
   })();
