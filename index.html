@@ -560,9 +560,9 @@
     <div class="links">
       <a href="#about">About</a>
       <a href="#audience">Audience</a>
+      <a href="#doodle">Canvas</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#work">Work</a>
-      <a href="#doodle">Canvas</a>
       <a href="#contact">Contact</a>
     </div>
     <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
@@ -619,9 +619,30 @@
   </div>
 </section>
 
+<section id="doodle">
+  <div class="section-inner" style="max-width:640px;">
+    <div class="section-label" style="text-align:center;">04 — Leave Your Mark</div>
+    <h2 class="section-title" style="text-align:center;">A Little Canvas</h2>
+    <p style="text-align:center; color:var(--text-dim-on-canvas); margin-bottom:30px;" class="reveal">I paint in my off hours — here's a tiny canvas for you to leave a stroke of your own before you go.</p>
+    <div class="doodle-wrap reveal">
+      <canvas id="doodleCanvas" width="600" height="300"></canvas>
+      <div class="doodle-controls">
+        <div class="doodle-colors">
+          <button class="doodle-color active" style="background:#2F6FE0" data-color="#2F6FE0" aria-label="Ultramarine"></button>
+          <button class="doodle-color" style="background:#123A7A" data-color="#123A7A" aria-label="Deep blue"></button>
+          <button class="doodle-color" style="background:#78A6F0" data-color="#78A6F0" aria-label="Light blue"></button>
+          <button class="doodle-color" style="background:#0F2547" data-color="#0F2547" aria-label="Ink"></button>
+          <button class="doodle-color" style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.2) !important;" data-color="#FFFFFF" aria-label="Eraser"></button>
+        </div>
+        <button id="doodleClear" class="demo-btn" style="margin-top:0; background:var(--deepblue);">Clear Canvas</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="skills-wrap">
-    <div class="section-label">04 — Skills</div>
+    <div class="section-label">05 — Skills</div>
     <h2 class="section-title">What I Work With</h2>
 
     <div class="skill-group reveal">
@@ -709,7 +730,7 @@
 </section>
 
 <section id="testimonials">
-  <div class="section-label reveal">05 — Testimonials</div>
+  <div class="section-label reveal">06 — Testimonials</div>
   <h2 class="section-title reveal">What People Say</h2>
   <div class="testimonial-grid">
     <div class="testimonial-card reveal">
@@ -750,7 +771,7 @@
 
 <section id="work">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">06 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">07 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 1</h2>
 
     <div class="artifact-pills reveal">
@@ -836,7 +857,7 @@
 
 <section id="work2">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">07 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">08 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 2</h2>
 
     <div class="placard reveal">
@@ -1026,7 +1047,7 @@
 
 <section id="work3">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">08 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">09 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 3</h2>
 
     <div class="placard reveal">
@@ -1121,7 +1142,7 @@
 
 <section id="work4">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">09 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">10 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 4</h2>
 
     <div class="placard reveal">
@@ -1224,7 +1245,7 @@
 
 <section id="work5">
   <div class="artifact-wrap">
-    <div class="section-label" style="text-align:center;">10 — Featured Work</div>
+    <div class="section-label" style="text-align:center;">11 — Featured Work</div>
     <h2 class="section-title" style="text-align:center;">Artifact 5</h2>
 
     <div class="placard reveal">
@@ -1282,27 +1303,6 @@
       <div class="field reveal">
         <div class="f-label">Why It Matters</div>
         <p>Every supervised model starts with labeled data, and its quality is bounded by the clarity of the instructions behind it. This artifact shows I understand dataset quality as a documentation problem, not just a technical one.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="doodle">
-  <div class="section-inner" style="max-width:640px;">
-    <div class="section-label" style="text-align:center;">11 — Leave Your Mark</div>
-    <h2 class="section-title" style="text-align:center;">A Little Canvas</h2>
-    <p style="text-align:center; color:var(--text-dim-on-canvas); margin-bottom:30px;" class="reveal">You've made it through all five artifacts — I paint in my off hours, so here's a tiny canvas for you to leave a stroke of your own before you go.</p>
-    <div class="doodle-wrap reveal">
-      <canvas id="doodleCanvas" width="600" height="300"></canvas>
-      <div class="doodle-controls">
-        <div class="doodle-colors">
-          <button class="doodle-color active" style="background:#2F6FE0" data-color="#2F6FE0" aria-label="Ultramarine"></button>
-          <button class="doodle-color" style="background:#123A7A" data-color="#123A7A" aria-label="Deep blue"></button>
-          <button class="doodle-color" style="background:#78A6F0" data-color="#78A6F0" aria-label="Light blue"></button>
-          <button class="doodle-color" style="background:#0F2547" data-color="#0F2547" aria-label="Ink"></button>
-          <button class="doodle-color" style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.2) !important;" data-color="#FFFFFF" aria-label="Eraser"></button>
-        </div>
-        <button id="doodleClear" class="demo-btn" style="margin-top:0; background:var(--deepblue);">Clear Canvas</button>
       </div>
     </div>
   </div>
